@@ -6,23 +6,23 @@ use wbns\base\Model;
 
 class Post extends AppModel
 {
-    private $author;
+    private $firstName;
 
-    private $publishedAt;
+    private $secondName;
 
-    private $textPost;
-
-    private $popular;
+    private $email;
 
     public $attributes = [
-        'author' => '',
-        'text_post' => '',
+        'first_name' => '',
+        'second_name' => '',
+        'email' => ''
     ];
 
     public $rules = [
         'required' => [
-            ['author'],
-            ['text_post'],
+            ['first_name'],
+            ['second_name'],
+            ['email'],
         ],
     ];
 
@@ -38,64 +38,48 @@ class Post extends AppModel
     /**
      * @return mixed
      */
-    public function getAuthor()
+    public function getFirstName()
     {
-        return $this->author;
+        return $this->firstName;
     }
 
     /**
-     * @param mixed $author
+     * @param $firstName
      */
-    public function setAuthor($author): void
+    public function setFirstName($firstName): void
     {
-        $this->author = $author;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPublishedAt()
-    {
-        return $this->publishedAt;
-    }
-
-    /**
-     * @param mixed $publishedAt
-     */
-    public function setPublishedAt($publishedAt): void
-    {
-        $this->publishedAt = $publishedAt;
+        $this->firstName = $firstName;
     }
 
     /**
      * @return mixed
      */
-    public function getTextPost()
+    public function getSecondName()
     {
-        return $this->textPost;
+        return $this->secondName;
     }
 
     /**
-     * @param mixed $textPost
+     * @param $secondName
      */
-    public function setTextPost($textPost): void
+    public function setSecondName($secondName): void
     {
-        $this->textPost = $textPost;
+        $this->secondName = $secondName;
     }
 
     /**
      * @return mixed
      */
-    public function getPopular()
+    public function getEmail()
     {
-        return $this->popular;
+        return $this->email;
     }
 
     /**
-     * @param mixed $popular
+     * @param $email
      */
-    public function setPopular($popular): void
+    public function setEmail($email): void
     {
-        $this->popular = $popular;
+        $this->email = $email;
     }
 }
