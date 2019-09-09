@@ -1,0 +1,16 @@
+{
+  "autoload": {
+    "psr-4": {
+      "wbns\\": "vendor/wbns/core",
+      "app\\": "app"
+    }
+  },
+  "require": {
+    "vlucas/valitron": "^1.4",
+    "ext-mbstring": "*"
+  }
+  ,
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  }
+}
