@@ -33,21 +33,21 @@
     <!--EndTable-->
 
   <!--Form start -->
-<form method="post" action="" name="input_form">
+<form method="post" name="input_form">
   <div class="form-group">
-    <div><h5><label for="firstName">Create new entry</label></h5></div>
+    <div><h5><label for="firstName">Edit entry</label></h5></div>
     <input type="text" name="first_name" class="form-control" id="firstName"
-           placeholder="Enter first name">
+           placeholder="Enter first name" value="<?= $currentPost['first_name'] ?>">
   </div>
   <div class="form-group">
     <input type="text" id="secondName" name="second_name" class="form-control"
-           placeholder="Enter second name">
+           placeholder="Enter second name" value="<?= $currentPost['second_name'] ?>">
   </div>
   <div class="form-group">
     <input type="text" id="email" name="email" class="form-control"
-           placeholder="Enter email">
+           placeholder="Enter email" value="<?= $currentPost['email'] ?>">
   </div>
 
-    <button type="submit" class="btn btn-primary">Add entry</button>
+    <button type="submit" class="btn btn-primary" onclick="window.location.href = <?=PATH?>">Save entry</button>
 </form>
   <!--Form end -->

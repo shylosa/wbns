@@ -78,7 +78,7 @@ abstract class Model
      * @param $table
      * @return bool
      */
-    public function save($table){
+    public function save($table, $id = ''){
         $tbl = $this->pdo;
         $set = '';
         foreach ($this->attributes as $name => $value){
@@ -86,8 +86,9 @@ abstract class Model
             $set.="`".str_replace("`","``",$name)."`". "=:$name, ";
            // $set.= $name . "=" . "`" . $value . "`" . ", ";
         }
-        $set = substr($set, 0, -2);;
-        $query = "INSERT INTO $table SET $set";
+        $set = substr($set, 0, -2);
+
+        $query = empty($id) ? "INSERT INTO $table SET $set" : "UPDATE $table SET $set WHERE id = $id";
 
         return $tbl->execute($query, $this->attributes);
     }
