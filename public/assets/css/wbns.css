@@ -1,0 +1,16 @@
+table.table form
+{
+  display: inline-block;
+}
+button.delete
+{
+  background: transparent;
+  border: none;
+  color: #007bff;
+  padding: 0px;
+}
+.table td.fit,
+.table th.fit {
+  white-space: nowrap;
+  width: 1%;
+}

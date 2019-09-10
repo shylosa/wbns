@@ -13,12 +13,13 @@ class PostController extends AppController
         if(!empty($_POST)){
             $model->addPost($model);
         }
-
         $posts = $model->findBySql('SELECT * FROM post_table;');
         $this->set(compact('posts'));
     }
 
+    public function deleteAction(): void
+    {
 
-
+    }
 
 }
