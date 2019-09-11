@@ -19,29 +19,41 @@ class PostController extends AppController
 
     public function deleteAction(): void
     {
-        $this->layout = 'default';
+        $model = new Post();
         $postId = Router::getParamUrl();
-        var_dump($postId);
+        $this->checkPost($model, $postId);
+        $model->deletePost($model, $postId);
+
+        $posts = $model->findBySql('SELECT * FROM post_table;');
+        $this->set([
+            'posts' => $posts
+        ]);
     }
 
     public function editAction(): void
     {
         $model = new Post();
         $postId = Router::getParamUrl();
+        $this->checkPost($model, $postId);
         $currentPost = $model->findOne($postId);
-        if(!$currentPost){
-            throw new \RuntimeException('Страница не найдена', 404);
-        }
+
         if(!empty($_POST)){
-            $currentPostID =$currentPost[0]['id'];
-            $model->editPost($model, $currentPostID);
+            $model->editPost($model, $postId);
         }
 
         $posts = $model->findBySql('SELECT * FROM post_table;');
         $this->set([
             'currentPost' => $currentPost[0],
-            'posts' => $posts]);
+            'posts' => $posts
+        ]);
+    }
 
-
+    protected function checkPost($model, $id)
+    {
+        $post = $model->findOne($id);
+        if(!$post){
+            throw new \RuntimeException('Страница не найдена', 404);
+        }
+        return $post;
     }
 }

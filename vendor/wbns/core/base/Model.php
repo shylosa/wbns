@@ -93,6 +93,12 @@ abstract class Model
         return $tbl->execute($query, $this->attributes);
     }
 
+    public function remove($table, $id = '')
+    {   $tbl = $this->pdo;
+        $query = "DELETE FROM $table WHERE id = $id";
+        return $tbl->execute($query);
+    }
+
     public function getErrors()
     {
         $errors = '<ul>';

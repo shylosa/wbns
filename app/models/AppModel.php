@@ -13,16 +13,16 @@ class AppModel extends Model
 
         if(!$model->validate($data)){
             $model->getErrors();
-                redirect();
+            redirect();
         }
 
         if($model->save($model->getTable())){
             $_SESSION['success'] = 'Вы успешно добавили запись!';
         } else {
-            $_SESSION['success'] = 'Ошибка. Попробуйте снова.';
+            $_SESSION['error'] = 'Ошибка. Попробуйте снова.';
         }
-            redirect();
-        }
+        redirect();
+    }
 
     public function editPost($model, $id):void
     {
@@ -37,7 +37,17 @@ class AppModel extends Model
         if($model->save($model->getTable(), $id)){
             $_SESSION['success'] = 'Вы успешно изменили запись!';
         } else {
-            $_SESSION['success'] = 'Ошибка. Попробуйте снова.';
+            $_SESSION['error'] = 'Ошибка. Попробуйте снова.';
+        }
+        redirect(PATH);
+    }
+
+    public function deletePost($model, $id):void
+    {
+        if($model->remove($model->getTable(), $id)){
+            $_SESSION['success'] = 'Вы успешно удалили запись!';
+        } else {
+            $_SESSION['error'] = 'Ошибка. Попробуйте снова.';
         }
         redirect(PATH);
     }

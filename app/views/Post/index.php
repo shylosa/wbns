@@ -18,9 +18,9 @@
         <td><?= $post['email']?></td>
         <td class="fit">
           <a href="<?=PATH . '/post/edit?id=' . $post['id']?>" class="fas fa-pencil-alt" title="Изменить запись"></a>
-          <form class="form" action="<?=PATH . '/post/delete?id=' . $post['id']?>">
+          <form method="post" class="form" action="<?=PATH . '/post/delete?id=' . $post['id']?>">
             <button onclick="return confirm('are you sure?')" type="submit" class="delete ml-2" title="Удалить запись">
-              <a href="" class="fas fa-times"></a>
+              <i class="fas fa-times"></i>
             </button>
           </form>
         </td>
