@@ -33,21 +33,21 @@
     <!--EndTable-->
 
   <!--Form start -->
-<form method="post" action="" name="input_form">
+<form method="post" action="" name="input_form" class="formWithValidation">
   <div class="form-group">
     <div><h5><label for="firstName">Create new entry</label></h5></div>
-    <input type="text" name="first_name" class="form-control" id="firstName"
+    <input type="text" name="first_name" class="form-control field" id="firstName"
            placeholder="Enter first name">
   </div>
   <div class="form-group">
-    <input type="text" id="secondName" name="second_name" class="form-control"
+    <input type="text" id="secondName" name="second_name" class="form-control field"
            placeholder="Enter second name">
   </div>
   <div class="form-group">
-    <input type="text" id="email" name="email" class="form-control"
+    <input type="text" id="email" name="email" class="form-control field"
            placeholder="Enter email">
   </div>
 
-    <button type="submit" class="btn btn-primary">Add entry</button>
+    <button type="submit" class="btn btn-primary validateBtn">Add entry</button>
 </form>
   <!--Form end -->
