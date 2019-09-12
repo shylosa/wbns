@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use wbns\base\Model;
+use wbns\Router;
 
 class Post extends AppModel
 {
@@ -22,8 +22,11 @@ class Post extends AppModel
         'required' => [
             ['first_name'],
             ['second_name'],
-            ['email'],
-        ],
+            ['email']
+            ],
+        'email' => [
+            ['email']
+        ]
     ];
 
     /**
@@ -31,7 +34,7 @@ class Post extends AppModel
      */
     public function __construct()
     {
-        Model::__construct();
+        AppModel::__construct();
         $this->table = 'post_table';
     }
 
@@ -81,5 +84,68 @@ class Post extends AppModel
     public function setEmail($email): void
     {
         $this->email = $email;
+    }
+
+    public function addPost($model):void
+    {
+        $data = $_POST;
+        $model->load($data);
+
+        if(!$model->validate($data)){
+            $model->getErrors();
+            return;
+        }
+
+        if($model->save($model->getTable())){
+            $_SESSION['success'] = 'Вы успешно добавили запись!';
+        } else {
+            $_SESSION['error'] = 'Ошибка. Попробуйте снова.';
+        }
+    }
+
+    public function editPost($id):void
+    {
+        $data = $_POST;
+        $this->load($data);
+
+        if(!$this->validate($data)){
+            $this->getErrors();
+            return;
+        }
+
+        if($this->save($this->getTable(), $id)){
+            $_SESSION['success'] = 'Вы успешно изменили запись!';
+        } else {
+            $_SESSION['error'] = 'Ошибка. Попробуйте снова.';
+        }
+    }
+
+    public function deletePost($id):void
+    {
+        if($this->remove($this->getTable(), $id)){
+            $_SESSION['success'] = 'Вы удалили запись!';
+        } else {
+            $_SESSION['error'] = 'Ошибка. Попробуйте снова.';
+        }
+    }
+
+    public function currentPostData()
+    {
+        $postId = Router::getParamUrl();
+        $currentPost = $this->checkPost($postId);
+        $posts = $this->findAll();
+
+        return ['postId' => $postId,
+            'currentPost' => $currentPost[0]
+        ];
+    }
+
+    public function checkPost($id)
+    {
+        $post = $this->findOne($id);
+        if(!$post){
+            throw new \RuntimeException('Страница не найдена', 404);
+        }
+        return $post;
     }
 }

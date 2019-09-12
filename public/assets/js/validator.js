@@ -4,7 +4,7 @@ var form = document.querySelector('.formWithValidation');
 var fields = form.querySelectorAll('.field');
 
 var formError;
-var email = document.getElementById('email');
+var email = form.querySelector('#email');
 
 form.addEventListener('submit', function (event) {
   event.preventDefault();

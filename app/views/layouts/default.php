@@ -7,10 +7,14 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../assets/css/wbns.css" type="text/css">
   <script src="https://kit.fontawesome.com/3b33465daa.js"></script>
+  <!--<link rel="stylesheet" href="../font-awesome/css/fontawesome.min.css">-->
 </head>
 <title><?= wbns\App::$app->getProperty('webapp_name') ?></title>
 <body>
 
+<script type="text/javascript">$(document).ready(function (){alert(jQuery.fn.jquery);} {
+
+  })</script>
   <h1><a class="navbar-brand ml-4 mr-md-2" href="/"><?= wbns\App::$app->getProperty('webapp_name');?></a></h1>
   <div class="container">
       <?php if(isset($_SESSION['error'])):?>
@@ -26,7 +30,7 @@
       <?php endif;?>
   </div>
 
-  <?= $content ?>
+  <?=$content?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -35,6 +39,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
           integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
           crossorigin="anonymous"></script>
+  <!-- AJAX
+  <script src="../assets/js/submit.js"></script>
+  -->
   <script src="../assets/js/validator.js"></script>
 </body>
 </html>
