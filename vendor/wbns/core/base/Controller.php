@@ -34,7 +34,7 @@ abstract class Controller{
     public function loadView($view, $vars = []){
         extract($vars);
         require APP . "/views/{$this->controller}/{$view}.php";
-        die;
+        //die;
     }
 
 }

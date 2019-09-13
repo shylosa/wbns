@@ -12,13 +12,15 @@ class PostController extends AppController
         $model = new Post();
         if(!empty($_POST)){
             $model->addPost($model);
-   // var_dump($this->isAjax()); die();
+
             if($this->isAjax()){
-                $posts = $model->findBySql('SELECT * FROM post_table;');
+                $posts = $model->findAll();
                 $this->loadView('table', $posts);
+                $this->loadView('form_add');
             } else {
                 redirect();
             }
+            redirect();
         }
 
         $posts = $model->findAll();
@@ -30,7 +32,12 @@ class PostController extends AppController
         $model = new Post();
         $postData = $model->currentPostData();
         $model->deletePost($postData['postId']);
-        redirect(PATH);
+        if($this->isAjax()) {
+            $posts = $model->findAll();
+            $this->loadView('table', $posts);
+        } else {
+            redirect(PATH);
+        }
     }
 
     public function editAction(): void
@@ -42,6 +49,9 @@ class PostController extends AppController
             $model->editPost($postData['postId']);
 
             if($_SESSION['error']) {
+                if($this->isAjax()) {
+                    return;
+                }
                 //Возврат на ту же страницу
                 redirect(PATH . "/{$this->controller}/{$this->view}?id={$postData['postId']}");
             } else {

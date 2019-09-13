@@ -16,8 +16,8 @@
         <td class="text-left"><?= $post['second_name']?></td>
         <td><?= $post['email']?></td>
         <td class="fit">
-          <a href="<?=PATH . '/post/edit?id=' . $post['id']?>" class="fas fa-pencil-alt" title="Изменить запись"></a>
-          <form method="post" class="form" action="<?=PATH . '/post/delete?id=' . $post['id']?>">
+          <a href="<?=PATH . '/post/edit?id=' . $post['id']?>" class="fas fa-pencil-alt js-edit" title="Изменить запись"></a>
+          <form method="post" class="form_delete" action="<?=PATH . '/post/delete?id=' . $post['id']?>">
             <button onclick="return confirm('are you sure?')" type="submit" class="delete ml-2" title="Удалить запись">
               <i class="fas fa-times"></i>
             </button>

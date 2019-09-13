@@ -1,4 +1,6 @@
 var form = document.querySelector('.formWithValidation');
+var formInput = $(form);
+var mainTable = $('#main_table');
 
 //Выбор всех валидируемых полей ввода
 var fields = form.querySelectorAll('.field');
@@ -6,6 +8,7 @@ var fields = form.querySelectorAll('.field');
 var formError;
 var email = form.querySelector('#email');
 
+//ВАЛИДАЦИЯ
 form.addEventListener('submit', function (event) {
   event.preventDefault();
   removeValidation();
@@ -13,7 +16,17 @@ form.addEventListener('submit', function (event) {
   checkFields();
   checkEmail(email.value);
   if (!formError){
-     form.submit();
+    $.ajax({
+      type: formInput.attr('method'),
+      url: formInput.attr('action'),
+      data: formInput.serialize()})
+      .done( function(data) {
+        console.log(data);
+        mainTable.html(data);
+        formInput[0].reset();
+        formInput.find('.error').remove();
+      })
+    //form.submit();
   }
 });
 
@@ -64,3 +77,31 @@ function checkEmail(address) {
 function fadeMessages(){
   $('.alert').delay(1000).fadeOut(1000);
 }
+
+//Форма удаления записей
+var formDelete = document.querySelectorAll('.form_delete');
+var formDeleteObj = $(formDelete);
+formDeleteObj.on('submit', function (event) {
+  event.preventDefault();
+  $.ajax({
+    type: formDeleteObj.attr('method'),
+    url: formDeleteObj.attr('action'),
+    data: formDeleteObj.serialize()})
+    .done( function(data) {
+      mainTable.html(data);
+  });
+});
+
+//Редирект для редактирования сообщений
+var linkToEdit = document.querySelectorAll('.js-edit');
+var linkToEditObj = $(linkToEdit);
+linkToEditObj.on('click', function (event) {
+  event.preventDefault();
+  $.ajax({
+    type: 'POST',
+    url: $(this).attr('href'),
+    data: $(this).serialize()})
+    .done( function(data) {
+      mainTable.html(data);
+    });
+});

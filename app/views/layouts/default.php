@@ -12,10 +12,7 @@
 <title><?= wbns\App::$app->getProperty('webapp_name') ?></title>
 <body>
 
-<script type="text/javascript">$(document).ready(function (){alert(jQuery.fn.jquery);} {
-
-  })</script>
-  <h1><a class="navbar-brand ml-4 mr-md-2" href="/"><?= wbns\App::$app->getProperty('webapp_name');?></a></h1>
+  <h1><a class="navbar-brand ml-4 mr-md-2" href="/"><?= wbns\App::$app->getProperty('webapp_name')?></a></h1>
   <div class="container">
       <?php if(isset($_SESSION['error'])):?>
         <div class="alert alert-danger" role="alert">
@@ -39,9 +36,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
           integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
           crossorigin="anonymous"></script>
-  <!-- AJAX
-  <script src="../assets/js/submit.js"></script>
-  -->
+
   <script src="../assets/js/validator.js"></script>
+  <!-- AJAX -->
+  <!--<script src="../assets/js/submit.js"></script>-->
 </body>
 </html>
