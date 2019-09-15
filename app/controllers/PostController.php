@@ -14,7 +14,7 @@ class PostController extends AppController
             $model->addPost($model);
    // var_dump($this->isAjax()); die();
             if($this->isAjax()){
-                $posts = $model->findBySql('SELECT * FROM post_table;');
+                $posts = $model->findAll();
                 $this->loadView('table', $posts);
             } else {
                 redirect();
