@@ -11,14 +11,14 @@ class PostController extends AppController
     {
         $model = new Post();
         if(!empty($_POST)){
-            $model->addPost($model);
-   // var_dump($this->isAjax()); die();
-            if($this->isAjax()){
-                $posts = $model->findAll();
-                $this->loadView('table', $posts);
-            } else {
+            $model->addPost();
+
+//            if($this->isAjax()){
+//                $posts = $model->findAll();
+//                $this->loadView('table', $posts);
+//            } else {
                 redirect();
-            }
+//            }
         }
 
         $posts = $model->findAll();
