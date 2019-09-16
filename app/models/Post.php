@@ -86,17 +86,17 @@ class Post extends AppModel
         $this->email = $email;
     }
 
-    public function addPost($model):void
+    public function addPost():void
     {
         $data = $_POST;
-        $model->load($data);
+        $this->load($data);
 
-        if(!$model->validate($data)){
-            $model->getErrors();
+        if(!$this->validate($data)){
+            $this->getErrors();
             return;
         }
 
-        if($model->save($model->getTable())){
+        if($this->save($this->getTable())){
             $_SESSION['success'] = 'Вы успешно добавили запись!';
         } else {
             $_SESSION['error'] = 'Ошибка. Попробуйте снова.';

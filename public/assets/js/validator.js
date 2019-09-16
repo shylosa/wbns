@@ -19,11 +19,12 @@ form.addEventListener('submit', function (event) {
     $.ajax({
       type: formInput.attr('method'),
       url: formInput.attr('action'),
-      data: formInput.serialize()})
-      .done( function(data) {
+      data: formInput.serialize()
+    }).done( function(data) {
         console.log(data);
         mainTable.html(data);
         formInput[0].reset();
+        fadeMessages();
         formInput.find('.error').remove();
       })
     //form.submit();

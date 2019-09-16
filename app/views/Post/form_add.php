@@ -1,4 +1,4 @@
-<form method="post" action="" name="input_form" id="input_form" class="formWithValidation">
+<form method="post" action="<?=PATH?>" name="input_form" id="input_form" class="formWithValidation">
     <div class="form-group">
         <div><h5><label for="firstName">Create new entry</label></h5></div>
         <input type="text" name="first_name" class="form-control field" id="firstName"

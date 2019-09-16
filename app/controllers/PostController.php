@@ -7,18 +7,18 @@ use wbns\Router;
 
 class PostController extends AppController
 {
-    public function indexAction(): void
+    public function indexAction()
     {
         $model = new Post();
         if(!empty($_POST)){
-            $model->addPost($model);
+            $model->addPost();
 
             if($this->isAjax()){
                 $posts = $model->findAll();
+                $this->layout = false;
                 $this->loadView('table', $posts);
-                $this->loadView('form_add');
-            } else {
-                redirect();
+                //$this->loadView('form_add');
+                return;
             }
             redirect();
         }
@@ -35,6 +35,7 @@ class PostController extends AppController
         if($this->isAjax()) {
             $posts = $model->findAll();
             $this->loadView('table', $posts);
+
         } else {
             redirect(PATH);
         }
